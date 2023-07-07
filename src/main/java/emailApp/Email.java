@@ -14,20 +14,14 @@ public class Email {
     Random random = new Random();
     int randomNum = random.nextInt((999 - 100) + 1) + 100;
 
-    public Email(String firstname, String lastname, String company, String department) {
+    public Email(String firstname, String lastname, String department, String company) {
         this.firstname = firstname;
-        this.lastname = lastname;
-        this.company = company;
+        this.lastname = lastname;;
         this.department = department;
+        this.company = company;
         generateRandomPassword();
     }
 
-    public Email(String firstname, String lastname, String company) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.company = company;
-        generateRandomPassword();
-    }
 
     public String getFirstname() {
         return firstname;
@@ -101,21 +95,21 @@ public class Email {
     }
 
     public String alternativeEmail(){
-        if (department != null) {
-            return firstname + '.' + lastname + randomNum +'@' + department + '.' + company + ".com";
+        if (department.equals("none")) {
+            return firstname + '.' + lastname + '@' + company + ".com ";
         }
         else {
-            return firstname + '.' + lastname + randomNum + '@' + company + ".com";
+            return firstname + '.' + lastname + '@' + department + '.' + company + ".com";
         }
     }
 
     @Override
     public String toString() {
-        if (department != null) {
-            return firstname + '.' + lastname + '@' + department + '.' + company + ".com";
+        if (department.equals("none")) {
+            return firstname + '.' + lastname + '@' + company + ".com ";
         }
         else {
-            return firstname + '.' + lastname + '@' + company + ".com ";
+            return firstname + '.' + lastname + '@' + department + '.' + company + ".com ";
         }
     }
 }
